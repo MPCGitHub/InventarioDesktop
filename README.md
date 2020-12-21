@@ -1,0 +1,2 @@
+# InventarioDesktop
+Inventário Desktop Flutter
