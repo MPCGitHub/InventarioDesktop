@@ -123,35 +123,107 @@ class SidebarCustom extends StatelessWidget {
             CustomDropdown(
               title: 'Consulta',
               items: [
-                Card(
-                  child: ListTile(
-                    title: const Text('Celulares'),
-                    onTap: () {
-                      // Lógica para tratar o clique na opção 1
-                    },
+                GestureDetector(
+                  onTap: () {},
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Card(
+                          margin: const EdgeInsets.all(2),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(3.0),
+                            side: const BorderSide(
+                              color: Colors.grey,
+                              width: 0.2,
+                            ),
+                          ),
+                          elevation: 5,
+                          child: const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text(
+                              'Celulares',
+                              style: TextStyle(color: Colors.white),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                Card(
-                  child: ListTile(
-                    title: const Text('Computadores'),
-                    onTap: () {
-                      // Lógica para tratar o clique na opção 2
-                    },
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const CadastroMonitor()),
+                    );
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Card(
+                          margin: const EdgeInsets.all(2),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(3.0),
+                            side: const BorderSide(
+                              color: Colors.grey,
+                              width: 0.2,
+                            ),
+                          ),
+                          elevation: 5,
+                          child: const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text(
+                              'Computadores',
+                              style: TextStyle(color: Colors.white),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                Card(
-                  child: ListTile(
-                    title: const Text('Monitores'),
-                    onTap: () {
-                      // Lógica para tratar o clique na opção 2
-                    },
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const CadastroMonitor()),
+                    );
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Card(
+                          margin: const EdgeInsets.all(2),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(3.0),
+                            side: const BorderSide(
+                              color: Colors.grey,
+                              width: 0.2,
+                            ),
+                          ),
+                          elevation: 5,
+                          child: const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text(
+                              'Monitores',
+                              style: TextStyle(color: Colors.white),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                // Adicione mais ListTile para outras opções do dropdown
               ],
             ),
-
-            // Adicione mais Card/ListTile para outras linhas da tabela
           ],
         ),
       ),

@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../Model/celular.dart';
+import '../database/celular.manager.dart';
+import '../widgets/card_pesquisa.dart';
+import '../widgets/siderbar_custom.dart';
+
 class CadastroMonitor extends StatefulWidget {
   const CadastroMonitor({super.key});
 
@@ -9,33 +14,40 @@ class CadastroMonitor extends StatefulWidget {
 }
 
 class _CadastroMonitorState extends State<CadastroMonitor> {
+  List<Celular> listaCelulares = [];
+  CelularManager celularManager = CelularManager();
+  String searchTerm = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: MediaQuery.of(context).size.height * 0.09,
-        title: const Text("Cadastro Monitor"),
-      ),
-      body: ListView(
-        physics: const ClampingScrollPhysics(),
-        children: [
-          Container(
-            height: 35,
-            color: Colors.grey.shade700.withOpacity(0.7),
-            child: const Row(
-              children: [],
-            ),
+        title: const Text(
+          'Cadastro Monitor',
+          style: TextStyle(
+            color: Color.fromARGB(255, 17, 139, 117),
           ),
-          // ignore: sized_box_for_whitespace
-          Container(
-            height: MediaQuery.of(context).size.height * 0.91,
-            child: Container(
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assets/ImagemEstoque.png"),
-                  fit: BoxFit.cover,
+        ),
+      ),
+      body: Row(
+        children: [
+          const SidebarCustom(),
+          Expanded(
+            child: Column(
+              children: [
+                TextField(
+                  decoration: const InputDecoration(
+                    hintText: 'Pesquisar',
+                    prefixIcon: Icon(Icons.search),
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      searchTerm = value;
+                    });
+                  },
                 ),
-              ),
+                CustomCard(celularManager: celularManager)
+              ],
             ),
           ),
         ],
