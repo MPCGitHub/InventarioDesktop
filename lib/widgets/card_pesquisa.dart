@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inventarius/database/celular.manager.dart';
+import 'package:inventarius/utils/celular.manager.dart';
 import 'package:inventarius/widgets/checkbox.dart';
 import 'package:inventarius/widgets/tabela_itens.dart';
 
@@ -31,8 +31,6 @@ class _CustomCardState extends State<CustomCard> {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint((MediaQuery.of(context).size.height / 6).toString());
-    debugPrint((MediaQuery.of(context).size.height / 6).toString());
     return Expanded(
       child: Column(
         children: [

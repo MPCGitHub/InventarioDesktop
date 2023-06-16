@@ -1,0 +1,69 @@
+Select pra mostrar marcas e quantidades de cada marca de Desktops:
+
+SELECT desktop_manufacturer AS Marca, COUNT(*) AS Quantidade
+FROM desktops
+GROUP BY desktop_manufacturer
+ORDER BY Quantidade DESC;
+
+---------------------------------------------------------------------
+
+Select para mostrar todos os processadores
+
+SELECT 
+    CASE
+        WHEN DesktopProcessor LIKE '%i5%' THEN 'Processador I5'
+        WHEN DesktopProcessor LIKE '%i3%' THEN 'Processador I3'
+        WHEN DesktopProcessor LIKE '%i7%' THEN 'Processador I7'
+        WHEN DesktopProcessor LIKE '%AMD%' THEN 'AMD'
+        WHEN DesktopProcessor LIKE '%DUO%' THEN 'DUO CORE'
+        WHEN DesktopProcessor LIKE '%Common KVM processor%' THEN 'VMWARE'
+    END AS Processador,
+    COUNT(*) AS Quantidade
+FROM inventario_maquinas
+GROUP BY Processador;
+
+---------------------------------------------------------------------
+
+Select maquinas por setores
+
+SELECT 
+    CASE
+        WHEN DesktopComputerName LIKE 'BKO%' THEN 'BackOffice'
+        WHEN DesktopComputerName LIKE 'CMR%' THEN 'Comercial'
+        WHEN DesktopComputerName LIKE 'DESK%' OR DesktopComputerName LIKE 'TIM%' THEN 'Máquinas Antigas'
+        WHEN DesktopComputerName LIKE 'DIR%' THEN 'Diretoria'
+        WHEN DesktopComputerName LIKE 'FIN%' THEN 'Financeiro'
+        WHEN DesktopComputerName LIKE 'GCR%' THEN 'Gerente Comercial'
+        WHEN DesktopComputerName LIKE 'GRH%' THEN 'Gerencia RH'
+        WHEN DesktopComputerName LIKE 'GTI%' THEN 'Gestão TI'
+        WHEN DesktopComputerName LIKE 'MKT%' THEN 'Marketing'
+        WHEN DesktopComputerName LIKE 'MON%' THEN 'Monitoramento'
+        WHEN DesktopComputerName LIKE 'NO%' OR DesktopComputerName LIKE 'OT%' THEN 'Notebook'
+        WHEN DesktopComputerName LIKE 'PA%' THEN 'Operação'
+        WHEN DesktopComputerName LIKE 'PBI%' THEN 'Power BI'
+        WHEN DesktopComputerName LIKE 'PRC%' THEN 'Precatorio'
+        WHEN DesktopComputerName LIKE 'QLD%' THEN 'Qualidade'
+        WHEN DesktopComputerName LIKE 'RPA%' THEN 'RPA'
+        WHEN DesktopComputerName LIKE 'SRV%' OR DesktopComputerName LIKE 'SD%' OR DesktopComputerName LIKE 'VM%' 
+		  OR DesktopComputerName LIKE 'A%' OR DesktopComputerName LIKE '10%' 
+		  OR DesktopComputerName LIKE 'BKP%' OR DesktopComputerName LIKE 'FLS%'THEN 'Servidores'
+        WHEN DesktopComputerName LIKE 'TRN%' THEN 'Treinamento'
+        WHEN DesktopComputerName LIKE 'STEAK%' THEN 'Steak Store'
+        WHEN DesktopComputerName LIKE 'TRN%' THEN 'Treinamento'
+    END AS Setor,
+    COUNT(*) AS Quantidade
+FROM inventario_maquinas
+GROUP BY Setor;
+
+-------------------------------------------------------------------
+
+Select pra mostrar marcas e quantidades de cada marca de Monitores:
+
+SELECT MonitorManufacturerPrimary AS Monitores, COUNT(*) AS Quantidade
+FROM inventario_maquinas
+GROUP BY MonitorManufacturerPrimary
+ORDER BY Quantidade DESC;
+
+------------------------------------------------------------------
+
+

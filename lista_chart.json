@@ -1,0 +1,85 @@
+{
+	"celulares":
+	[
+		{
+			"tag": "CL001",
+			"fabricante": "SAMSUNG",
+			"serial_number": "RQ8T200DGWN",
+			"imei1": "354291425346548",
+			"imei2": "3542914253465210",
+			"departamento": "COMERCIAL",
+			"modelo": "GALAXY A12",
+			"hd": "64GB",
+			"colaborador": "LIVIA GUEDES DA SILVA",
+			"empresa": "MDG INTERMEDIACOES DE NEGOCIOS EIRELI",
+			"site": "PAULINIA",
+			"termo": "Sem informação",
+			"ativo": "SIM",
+			"data": "Sem informação"
+		},
+		{
+			"tag": "CL002",
+			"fabricante": "SAMSUNG",
+			"serial_number": "RQ8T2010AYW",
+			"imei1": "354291425389274",
+			"imei2": "354291425389279",
+			"departamento": "COMERCIAL",
+			"modelo": "GALAXY A12",
+			"hd": "64GB",
+			"colaborador": "MARINA VILELA SANTOS",
+			"empresa": "DG SERVICOS DE CORRESPONDENCIA DE INSTITUICOES FINANCEIRAS EIRELI",
+			"site": "PAULINIA",
+			"termo": "SIM",
+			"ativo": "SIM",
+			"data": "Sem informação"
+		},
+		{
+			"tag": "CL003",
+			"fabricante": "SAMSUNG",
+			"serial_number": "Sem informação",
+			"imei1": "354291425280218",
+			"imei2": "Sem informação",
+			"departamento": "COMERCIAL",
+			"modelo": "GALAXY A12",
+			"hd": "64GB",
+			"colaborador": "Jennifer Carolini Alvez de Oliveira",
+			"empresa": "A.C.G. CONSULTORIA EM GESTAO EMPRESARIAL LTDA",
+			"site": "PAULINIA",
+			"termo": "SIM",
+			"ativo": "NÃO",
+			"data": "Sem informação"
+		},
+		{
+			"tag": "CL004",
+			"fabricante": "SAMSUNG",
+			"serial_number": "Sem informação",
+			"imei1": "354291425391494",
+			"imei2": "Sem informação",
+			"departamento": "COMERCIAL",
+			"modelo": "GALAXY A12",
+			"hd": "64GB",
+			"colaborador": "KARINA FERREIRA BRASIL",
+			"empresa": "DG SERVICOS DE CORRESPONDENCIA DE INSTITUICOES FINANCEIRAS EIRELI",
+			"site": "COSMOPOLIS",
+			"termo": "SIM",
+			"ativo": "NÃO",
+			"data": "Sem informação"
+		},
+		{
+			"tag": "CL005",
+			"fabricante": "SAMSUNG",
+			"serial_number": "ROST2010HYE",
+			"imei1": "354291425391585",
+			"imei2": "354291425391580",
+			"departamento": "COMERCIAL",
+			"modelo": "GALAXY A12",
+			"hd": "64GB",
+			"colaborador": "EVELYN KELLY BISPO RAMOS DASNEVES",
+			"empresa": "MDG INTERMEDIACOES DE NEGOCIOS EIRELI",
+			"site": "PAULINIA",
+			"termo": "SIM",
+			"ativo": "SIM",
+			"data": "Sem informação"
+		}
+	]
+}

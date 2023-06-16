@@ -1,9 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:mysql1/mysql1.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class DatabaseManager {
-  late MySqlConnection _connection;
+  MySqlConnection? _connection;
 
   Future<MySqlConnection> connect() async {
     await dotenv.load(fileName: ".env");
@@ -14,12 +13,12 @@ class DatabaseManager {
         password: dotenv.env['DB_PASSWORD'] as String,
         db: dotenv.env['DB_DATABASE'] as String);
     final connection = await MySqlConnection.connect(settings);
-    debugPrint('Conexão bem-sucedida com o banco de dados!');
     return connection;
   }
 
   Future<void> disconnect() async {
-    await _connection.close();
-    debugPrint('Conexão com o banco de dados encerrada.');
+    if (_connection != null) {
+      await _connection!.close();
+    }
   }
 }
