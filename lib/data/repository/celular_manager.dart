@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inventarius/models/celular.dart';
-import 'package:inventarius/database/db_manager.dart';
+import 'package:inventarius/data/repository/db_manager.dart';
 import 'package:inventarius/widgets/mobile_chart.dart';
 import 'package:mysql1/mysql1.dart';
 
@@ -29,7 +29,7 @@ class CelularManager extends ChangeNotifier {
           serialNumber: row['serial_number'],
           imei1: row['imei1'],
           imei2: row['imei2'],
-          departamento: row['departamento'],
+          departamento: row['department'],
           modelo: row['modelo'],
           hd: row['hd'],
           colaborador: row['colaborador'],

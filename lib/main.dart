@@ -3,7 +3,10 @@ import 'package:inventarius/models/celular.dart';
 import 'package:inventarius/models/dashboard_data.dart';
 import 'package:inventarius/widgets/frame_dashboard.dart';
 import 'package:provider/provider.dart';
-import 'utils/celular.manager.dart';
+import 'data/repository/celular_manager.dart';
+import 'data/repository/desktop_manager.dart';
+import 'data/repository/monitor_manager.dart';
+import 'data/repository/table_manager.dart';
 import 'widgets/siderbar_custom.dart';
 
 void main() {
@@ -23,6 +26,18 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => DashboardData(),
+          lazy: false,
+        ),
+        ChangeNotifierProvider(
+          create: (_) => MonitorManager(),
+          lazy: false,
+        ),
+        ChangeNotifierProvider(
+          create: (_) => DesktopManager(),
+          lazy: false,
+        ),
+        ChangeNotifierProvider(
+          create: (_) => TableManager(),
           lazy: false,
         )
       ],

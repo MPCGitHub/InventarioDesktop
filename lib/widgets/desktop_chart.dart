@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-class MobileChart extends StatelessWidget {
-  final List<ChartDataMobile> chartDataMobile;
+class DesktopChart extends StatelessWidget {
+  final List<ChartDataDesktop> chartDataDesktop;
   final double radiusHeight;
 
-  const MobileChart(
-      {Key? key, required this.chartDataMobile, required this.radiusHeight})
-      : super(key: key);
+  const DesktopChart(
+      {super.key, required this.chartDataDesktop, required this.radiusHeight});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +18,7 @@ class MobileChart extends StatelessWidget {
       ),
       margin: const EdgeInsets.only(top: 0, right: 0),
       title: ChartTitle(
-        text: 'Marcas Celulares',
+        text: 'Marcas Desktops',
         alignment: ChartAlignment.near,
         textStyle: const TextStyle(
           fontSize: 11,
@@ -28,10 +27,10 @@ class MobileChart extends StatelessWidget {
         ),
       ),
       series: <CircularSeries>[
-        PieSeries<ChartDataMobile, String>(
-            dataSource: chartDataMobile,
-            xValueMapper: (ChartDataMobile series, _) => series.fabricante,
-            yValueMapper: (ChartDataMobile series, _) => series.quantidade,
+        PieSeries<ChartDataDesktop, String>(
+            dataSource: chartDataDesktop,
+            xValueMapper: (ChartDataDesktop series, _) => series.fabricante,
+            yValueMapper: (ChartDataDesktop series, _) => series.quantidade,
             dataLabelSettings: const DataLabelSettings(
               textStyle: TextStyle(
                 fontSize: 9,
@@ -48,9 +47,9 @@ class MobileChart extends StatelessWidget {
   }
 }
 
-class ChartDataMobile {
+class ChartDataDesktop {
   final String fabricante;
   final int quantidade;
 
-  ChartDataMobile({required this.fabricante, required this.quantidade});
+  ChartDataDesktop({required this.fabricante, required this.quantidade});
 }

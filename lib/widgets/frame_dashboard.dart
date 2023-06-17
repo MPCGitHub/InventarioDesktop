@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:inventarius/utils/celular.manager.dart';
-import 'package:inventarius/widgets/developer_series.dart';
+import 'package:inventarius/data/repository/celular_manager.dart';
 import 'package:inventarius/widgets/mobile_chart.dart';
 import 'package:provider/provider.dart';
+import '../data/repository/desktop_manager.dart';
+import '../data/repository/monitor_manager.dart';
 import '../models/dashboard_data.dart';
-import 'developer_chart.dart';
+import 'desktop_chart.dart';
+import 'device_data_table.dart';
+import 'monitor_chart.dart';
 
 class FrameDashboard extends StatefulWidget {
   const FrameDashboard({super.key});
@@ -14,13 +17,6 @@ class FrameDashboard extends StatefulWidget {
 }
 
 class _FrameDashboardState extends State<FrameDashboard> {
-  final List<DeveloperSeries> data = [
-    DeveloperSeries('2020', 50, Colors.blue),
-    DeveloperSeries('2021', 70, Colors.green),
-    DeveloperSeries('2022', 40, Colors.orange),
-    DeveloperSeries('2023', 60, Colors.red),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -48,7 +44,7 @@ class _FrameDashboardState extends State<FrameDashboard> {
                                 fontWeight: FontWeight.bold,
                                 shadows: [
                                   Shadow(
-                                    color: Colors.grey.withOpacity(0.1),
+                                    color: Colors.grey.withOpacity(0.4),
                                     offset: const Offset(1, 1),
                                     blurRadius: 1,
                                   ),
@@ -318,7 +314,7 @@ class _FrameDashboardState extends State<FrameDashboard> {
                               fontWeight: FontWeight.bold,
                               shadows: [
                                 Shadow(
-                                  color: Colors.grey.withOpacity(0.1),
+                                  color: Colors.grey.withOpacity(0.4),
                                   offset: const Offset(1, 1),
                                   blurRadius: 1,
                                 ),
@@ -570,7 +566,7 @@ class _FrameDashboardState extends State<FrameDashboard> {
                           fontWeight: FontWeight.bold,
                           shadows: [
                             Shadow(
-                              color: Colors.grey.withOpacity(0.1),
+                              color: Colors.grey.withOpacity(0.4),
                               offset: const Offset(1, 1),
                               blurRadius: 1,
                             ),
@@ -594,9 +590,12 @@ class _FrameDashboardState extends State<FrameDashboard> {
                                   return Card(
                                     color:
                                         Colors.grey.shade700.withOpacity(0.6),
-                                    child: MobileChart(
-                                      chartDataMobile: chartDataMobile,
-                                      radiusHeight: constraints.maxHeight,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 10),
+                                      child: MobileChart(
+                                        chartDataMobile: chartDataMobile,
+                                        radiusHeight: constraints.maxHeight,
+                                      ),
                                     ),
                                   );
                                 },
@@ -604,41 +603,55 @@ class _FrameDashboardState extends State<FrameDashboard> {
                             );
                           },
                         ),
-                        Expanded(
-                          flex: 1,
-                          child: Card(
-                            color: Colors.grey.shade700.withOpacity(0.6),
-                            child: LayoutBuilder(
-                              builder: (BuildContext context,
-                                  BoxConstraints constraints) {
-                                return SizedBox(
-                                  width: constraints.maxWidth,
-                                  height: constraints.maxHeight,
-                                  child: DeveloperChart(
-                                    data: data,
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
+                        Consumer<DesktopManager>(
+                          builder: (context, desktopManager, _) {
+                            final chartDataDesktop =
+                                desktopManager.chartDataDesktop;
+                            return Expanded(
+                              flex: 1,
+                              child: LayoutBuilder(
+                                builder: (BuildContext context,
+                                    BoxConstraints constraints) {
+                                  return Card(
+                                    color:
+                                        Colors.grey.shade700.withOpacity(0.6),
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 10),
+                                      child: DesktopChart(
+                                        chartDataDesktop: chartDataDesktop,
+                                        radiusHeight: constraints.maxHeight,
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            );
+                          },
                         ),
-                        Expanded(
-                          flex: 1,
-                          child: Card(
-                            color: Colors.grey.shade700.withOpacity(0.6),
-                            child: LayoutBuilder(
-                              builder: (BuildContext context,
-                                  BoxConstraints constraints) {
-                                return SizedBox(
-                                  width: constraints.maxWidth,
-                                  height: constraints.maxHeight,
-                                  child: DeveloperChart(
-                                    data: data,
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
+                        Consumer<MonitorManager>(
+                          builder: (context, monitorManager, _) {
+                            final chartDataMonitor =
+                                monitorManager.chartDataMonitor;
+                            return Expanded(
+                              flex: 1,
+                              child: LayoutBuilder(
+                                builder: (BuildContext context,
+                                    BoxConstraints constraints) {
+                                  return Card(
+                                    color:
+                                        Colors.grey.shade700.withOpacity(0.6),
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 10),
+                                      child: MonitorChart(
+                                        chartDataMonitor: chartDataMonitor,
+                                        radiusHeight: constraints.maxHeight,
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            );
+                          },
                         ),
                       ],
                     ),
@@ -653,17 +666,35 @@ class _FrameDashboardState extends State<FrameDashboard> {
               child: Card(
                 elevation: 6,
                 shadowColor: Colors.black,
-                child: Container(
-                  color: Colors.grey.shade700.withOpacity(0.6),
-                  child: const Center(
-                    child: Text(
-                      'Card 4',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 24.0,
+                child: Column(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(5),
+                      child: Center(
+                        child: Text(
+                          'Distribuição dos Dispositivos por Setores',
+                          style: TextStyle(
+                            color: const Color.fromARGB(255, 37, 37, 37),
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            shadows: [
+                              Shadow(
+                                color: Colors.grey.withOpacity(0.4),
+                                offset: const Offset(1, 1),
+                                blurRadius: 1,
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                    Expanded(
+                      child: Card(
+                        color: Colors.grey.shade700.withOpacity(0.6),
+                        child: const DeviceDataTable(),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),

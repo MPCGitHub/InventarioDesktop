@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:inventarius/database/db_manager.dart';
+import 'package:inventarius/data/repository/db_manager.dart';
 import 'package:mysql1/mysql1.dart';
 import '../widgets/mobile_chart.dart';
 

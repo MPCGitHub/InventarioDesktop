@@ -3,7 +3,7 @@ import 'package:inventarius/models/celular.dart';
 import 'package:inventarius/widgets/card_pesquisa.dart';
 import 'package:inventarius/widgets/siderbar_custom.dart';
 
-import '../../utils/celular.manager.dart';
+import '../../data/repository/celular_manager.dart';
 
 // ignore: must_be_immutable
 class ConsultaCelulares extends StatelessWidget {

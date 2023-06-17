@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inventarius/utils/celular.manager.dart';
+import 'package:inventarius/data/repository/celular_manager.dart';
 import 'package:inventarius/widgets/checkbox.dart';
 import 'package:inventarius/widgets/tabela_itens.dart';
 

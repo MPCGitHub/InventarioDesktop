@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../models/celular.dart';
-import '../../utils/celular.manager.dart';
+import '../../data/repository/celular_manager.dart';
 import '../../widgets/card_pesquisa.dart';
 import '../../widgets/siderbar_custom.dart';
 

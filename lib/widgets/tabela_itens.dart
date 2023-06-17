@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../utils/celular.manager.dart';
+import '../data/repository/celular_manager.dart';
 
 class TabelaItens extends StatefulWidget {
   final CelularManager celularManager;
