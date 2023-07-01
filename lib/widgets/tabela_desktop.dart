@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:inventarius/data/repository/desktop_manager.dart';
 import 'package:provider/provider.dart';
-import '../data/repository/celular_manager.dart';
 
-class TabelaItens extends StatefulWidget {
-  final CelularManager celularManager;
+class TabelaDesktop extends StatefulWidget {
+  final DesktopManager desktopManager;
   final bool showTagColumn;
   final bool showImei1Column;
   final bool showModeloColumn;
@@ -17,11 +17,11 @@ class TabelaItens extends StatefulWidget {
   final bool showSerialNumberColumn;
   final bool showDepartamentoColumn;
   final bool showSiteColumn;
-  final bool showDataColumn;
+  final bool showStatusColumn;
 
-  const TabelaItens(
+  const TabelaDesktop(
       {Key? key,
-      required this.celularManager,
+      required this.desktopManager,
       required this.showTagColumn,
       required this.showImei1Column,
       required this.showModeloColumn,
@@ -35,7 +35,7 @@ class TabelaItens extends StatefulWidget {
       required this.showSerialNumberColumn,
       required this.showDepartamentoColumn,
       required this.showSiteColumn,
-      required this.showDataColumn})
+      required this.showStatusColumn})
       : super(key: key);
 
   @override
@@ -43,20 +43,20 @@ class TabelaItens extends StatefulWidget {
   _TabelaItensState createState() => _TabelaItensState();
 }
 
-class _TabelaItensState extends State<TabelaItens> {
+class _TabelaItensState extends State<TabelaDesktop> {
   @override
   void initState() {
     super.initState();
-    widget.celularManager.addListener(_onCelularManagerChange);
+    widget.desktopManager.addListener(_ondesktopManagerChange);
   }
 
   @override
   void dispose() {
-    widget.celularManager.removeListener(_onCelularManagerChange);
+    widget.desktopManager.removeListener(_ondesktopManagerChange);
     super.dispose();
   }
 
-  void _onCelularManagerChange() {
+  void _ondesktopManagerChange() {
     setState(() {
       // Chamar setState para atualizar a exibição quando ocorrerem alterações no celularManager
     });
@@ -68,8 +68,8 @@ class _TabelaItensState extends State<TabelaItens> {
       child: SingleChildScrollView(
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          child: Consumer<CelularManager>(
-            builder: (_, celularManager, __) {
+          child: Consumer<DesktopManager>(
+            builder: (_, desktopManager, __) {
               return DataTable(
                 columns: [
                   if (widget.showTagColumn)
@@ -78,10 +78,6 @@ class _TabelaItensState extends State<TabelaItens> {
                     const DataColumn(label: Text('Fabricante')),
                   if (widget.showSerialNumberColumn)
                     const DataColumn(label: Text('Serial Number')),
-                  if (widget.showImei1Column)
-                    const DataColumn(label: Text('IMEI 1')),
-                  if (widget.showImei2Column)
-                    const DataColumn(label: Text('IMEI 2')),
                   if (widget.showDepartamentoColumn)
                     const DataColumn(label: Text('Departamento')),
                   if (widget.showModeloColumn)
@@ -93,35 +89,30 @@ class _TabelaItensState extends State<TabelaItens> {
                     const DataColumn(label: Text('Empresa')),
                   if (widget.showSiteColumn)
                     const DataColumn(label: Text('Site')),
-                  if (widget.showTermoColumn)
-                    const DataColumn(label: Text('Termo')),
-                  if (widget.showAtivoColumn)
-                    const DataColumn(label: Text('Ativo')),
-                  if (widget.showDataColumn)
-                    const DataColumn(label: Text('Data')),
+                  if (widget.showStatusColumn)
+                    const DataColumn(label: Text('Status Dispositivo')),
                 ],
-                rows: celularManager.allCelulares.map((celular) {
+                rows: desktopManager.allDesktops.map((desktop) {
                   return DataRow(cells: [
-                    if (widget.showTagColumn) DataCell(Text(celular.tag)),
+                    if (widget.showTagColumn)
+                      DataCell(Text(desktop.desktopTag)),
                     if (widget.showFabricanteColumn)
-                      DataCell(Text(celular.fabricante)),
+                      DataCell(Text(desktop.desktopManufacturer)),
                     if (widget.showSerialNumberColumn)
-                      DataCell(Text(celular.serialNumber)),
-                    if (widget.showImei1Column) DataCell(Text(celular.imei1)),
-                    if (widget.showImei2Column) DataCell(Text(celular.imei2)),
+                      DataCell(Text(desktop.desktopSerialNumber)),
                     if (widget.showDepartamentoColumn)
-                      DataCell(Text(celular.departamento)),
-                    if (widget.showModeloColumn) DataCell(Text(celular.modelo)),
-                    if (widget.showHdColumn) DataCell(Text(celular.hd)),
+                      DataCell(Text(desktop.department)),
+                    if (widget.showModeloColumn)
+                      DataCell(Text(desktop.desktopModel)),
+                    if (widget.showHdColumn)
+                      DataCell(Text(desktop.desktopDiskDrive)),
                     if (widget.showColaboradorColumn)
-                      DataCell(Text(celular.colaborador)),
+                      DataCell(Text(desktop.userName)),
                     if (widget.showEmpresaColumn)
-                      DataCell(Text(celular.empresa)),
-                    if (widget.showSiteColumn) DataCell(Text(celular.site)),
-                    if (widget.showTermoColumn) DataCell(Text(celular.termo)),
-                    if (widget.showAtivoColumn)
-                      DataCell(Text(celular.ativo.toString())),
-                    if (widget.showDataColumn) DataCell(Text(celular.data)),
+                      DataCell(Text(desktop.desktopProvider)),
+                    if (widget.showSiteColumn) DataCell(Text(desktop.site)),
+                    if (widget.showStatusColumn)
+                      DataCell(Text(desktop.statusDispositivo)),
                   ]);
                 }).toList(),
               );

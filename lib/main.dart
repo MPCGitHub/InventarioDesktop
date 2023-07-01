@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:inventarius/models/celular.dart';
 import 'package:inventarius/models/dashboard_data.dart';
-import 'package:inventarius/widgets/frame_dashboard.dart';
+import 'package:inventarius/pages/dashboard/dashboard.dart';
 import 'package:provider/provider.dart';
-import 'data/repository/celular_manager.dart';
+import 'data/repository/mobile_manager.dart';
 import 'data/repository/desktop_manager.dart';
 import 'data/repository/monitor_manager.dart';
 import 'data/repository/table_manager.dart';
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => CelularManager(),
+          create: (_) => MobileManager(),
           lazy: false,
         ),
         ChangeNotifierProvider(
@@ -64,7 +64,7 @@ class MenuPrincipal extends StatefulWidget {
 
 class _MenuPrincipalState extends State<MenuPrincipal> {
   List<Celular> listaCelulares = [];
-  CelularManager celularManager = CelularManager();
+  MobileManager celularManager = MobileManager();
   String searchTerm = '';
 
   @override
@@ -85,7 +85,7 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
               width: 50,
             ),
             const Text(
-              'Menu Principal',
+              'Dashboard',
               style: TextStyle(
                 color: Color.fromARGB(255, 17, 139, 117),
                 fontSize: 25,
@@ -99,8 +99,11 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
         children: [
           SidebarCustom(),
           Expanded(
-            child: FrameDashboard(),
-          ),
+            child: Padding(
+              padding: EdgeInsets.all(2.0),
+              child: DasboardPage(),
+            ),
+          )
         ],
       ),
     );

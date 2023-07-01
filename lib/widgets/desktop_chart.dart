@@ -5,44 +5,54 @@ class DesktopChart extends StatelessWidget {
   final List<ChartDataDesktop> chartDataDesktop;
   final double radiusHeight;
 
-  const DesktopChart(
-      {super.key, required this.chartDataDesktop, required this.radiusHeight});
+  const DesktopChart({
+    Key? key,
+    required this.chartDataDesktop,
+    required this.radiusHeight,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SfCircularChart(
-      legend: Legend(
-        textStyle: const TextStyle(fontSize: 8),
-        isVisible: true,
-        position: LegendPosition.left,
+    return SfCartesianChart(
+      primaryXAxis: CategoryAxis(
+        rangePadding: ChartRangePadding.none,
+        labelStyle: const TextStyle(
+          fontSize: 7,
+        ),
       ),
-      margin: const EdgeInsets.only(top: 0, right: 0),
+      primaryYAxis: NumericAxis(),
+      series: <ChartSeries>[
+        ColumnSeries<ChartDataDesktop, String>(
+          dataSource: chartDataDesktop,
+          xValueMapper: (ChartDataDesktop series, _) => series.fabricante,
+          yValueMapper: (ChartDataDesktop series, _) => series.quantidade,
+          dataLabelSettings: const DataLabelSettings(
+            textStyle: TextStyle(
+              fontSize: 12,
+            ),
+            isVisible: true,
+          ),
+          gradient: const LinearGradient(
+            colors: [
+              Color.fromARGB(255, 0, 200, 83),
+              Color.fromARGB(255, 18, 150, 125),
+              Color.fromARGB(255, 0, 200, 83),
+            ],
+            stops: [0, 0.5, 0.9],
+          ),
+          width: 0.9,
+        ),
+      ],
       title: ChartTitle(
         text: 'Marcas Desktops',
         alignment: ChartAlignment.near,
         textStyle: const TextStyle(
-          fontSize: 11,
+          fontSize: 13,
           color: Color.fromARGB(255, 17, 139, 117),
           fontWeight: FontWeight.bold,
+          fontStyle: FontStyle.italic,
         ),
       ),
-      series: <CircularSeries>[
-        PieSeries<ChartDataDesktop, String>(
-            dataSource: chartDataDesktop,
-            xValueMapper: (ChartDataDesktop series, _) => series.fabricante,
-            yValueMapper: (ChartDataDesktop series, _) => series.quantidade,
-            dataLabelSettings: const DataLabelSettings(
-              textStyle: TextStyle(
-                fontSize: 9,
-              ),
-              isVisible: true,
-              labelPosition: ChartDataLabelPosition.inside,
-            ),
-            radius: (radiusHeight / 2.35).toString()),
-      ],
-      centerY:
-          (radiusHeight > 155 ? (radiusHeight / 2.45) : (radiusHeight / 2.75))
-              .toString(),
     );
   }
 }

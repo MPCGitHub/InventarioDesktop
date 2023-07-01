@@ -14,8 +14,7 @@ class Desktop {
   String desktopDiskDrive;
   String department;
   String site;
-  String monitor1;
-  String monitor2;
+  String statusDispositivo;
 
   Desktop({
     required this.idDesktop,
@@ -33,8 +32,7 @@ class Desktop {
     required this.desktopDiskDrive,
     required this.department,
     required this.site,
-    required this.monitor1,
-    required this.monitor2,
+    required this.statusDispositivo,
   });
 
   factory Desktop.fromJson(Map<String, dynamic> json) {
@@ -54,8 +52,7 @@ class Desktop {
       desktopDiskDrive: json['desktop_disk_drive'],
       department: json['department'],
       site: json['site'],
-      monitor1: json['monitor1'],
-      monitor2: json['monitor2'],
+      statusDispositivo: json['statusDispositivo'],
     );
   }
 
@@ -76,8 +73,7 @@ class Desktop {
       'desktop_disk_drive': desktopDiskDrive,
       'department': department,
       'site': site,
-      'monitor1': monitor1,
-      'monitor2': monitor2,
+      'statusDispositivo': statusDispositivo,
     };
   }
 
@@ -89,6 +85,7 @@ class Desktop {
         'desktopTotalPhysicalMemory: $desktopTotalPhysicalMemory, desktopOperatingSystem: $desktopOperatingSystem, '
         'desktopProvider: $desktopProvider, desktopProcessor: $desktopProcessor, '
         'desktopMacAddress: $desktopMacAddress, desktopDiskDrive: $desktopDiskDrive, '
-        'department: $department, site: $site, monitor1: $monitor1, monitor2: $monitor2}';
+        'department: $department, site: $site, '
+        'statusDispositivo: $statusDispositivo';
   }
 }
