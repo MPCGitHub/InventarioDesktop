@@ -34,9 +34,10 @@ class DashboardData extends ChangeNotifier {
 
     try {
       Results results = await connection.query('''
-        SELECT COUNT(*) AS Quantidade_Monitores
-        FROM monitores
-        ORDER BY Quantidade_Monitores DESC
+        SELECT manufacturer AS Marca, COUNT(*) AS Quantidade_Monitores
+        FROM dispositivos WHERE tipo = 3
+        GROUP BY manufacturer
+        ORDER BY Quantidade_Monitores DESC;
       ''');
 
       for (var row in results) {
@@ -54,8 +55,9 @@ class DashboardData extends ChangeNotifier {
 
     try {
       Results results = await connection.query('''
-        SELECT COUNT(*) AS Quantidade_Desktops
-        FROM desktops
+        SELECT manufacturer AS Marca, COUNT(*) AS Quantidade_Desktops
+        FROM dispositivos WHERE tipo = 2
+        GROUP BY manufacturer
         ORDER BY Quantidade_Desktops DESC;
       ''');
 

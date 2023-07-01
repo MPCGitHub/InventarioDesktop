@@ -3,14 +3,14 @@ import 'package:provider/provider.dart';
 import '../data/repository/table_manager.dart';
 import '../models/device_data.dart';
 
-class DeviceDataTable extends StatelessWidget {
-  const DeviceDataTable({super.key});
+class MonitorDataTable extends StatelessWidget {
+  const MonitorDataTable({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Consumer<TableManager>(
       builder: (context, tableManager, _) {
-        List<DeviceData> deviceDataList = tableManager.deviceDataList;
+        List<DeviceData> deviceDataList = tableManager.monitorDataList;
         return SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: SingleChildScrollView(
@@ -21,7 +21,6 @@ class DeviceDataTable extends StatelessWidget {
                 SingleChildScrollView(
                   child: DataTable(
                     columns: const [
-                      DataColumn(label: Text('Dispositivos')),
                       DataColumn(label: Text('Comercial')),
                       DataColumn(label: Text('Estoque')),
                       DataColumn(label: Text('TI')),
@@ -37,7 +36,6 @@ class DeviceDataTable extends StatelessWidget {
                     rows: deviceDataList.map((deviceData) {
                       return DataRow(
                         cells: [
-                          DataCell(Text(deviceData.dispositivos)),
                           DataCell(Text(deviceData.comercial.toString())),
                           DataCell(Text(deviceData.estoque.toString())),
                           DataCell(Text(deviceData.ti.toString())),

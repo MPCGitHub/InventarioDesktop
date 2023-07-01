@@ -2,51 +2,42 @@ import 'package:flutter/material.dart';
 import 'package:mysql1/mysql1.dart';
 import '../../models/monitor.dart';
 import '../../widgets/monitor_chart.dart';
+import '../../widgets/status_monitor_chart.dart';
 import 'db_manager.dart';
 
 class MonitorManager extends ChangeNotifier {
   late DatabaseManager databaseManager;
   Future<MySqlConnection>? connection;
-  List<Monitor> allMonitores = [];
   List<ChartDataMonitor> chartDataMonitor = [];
+  List<ChartStatusDataMonitor> chartStatusDataMonitor = [];
+  List<Monitor> listaMonitores = [];
 
   MonitorManager() {
     databaseManager = DatabaseManager();
     carregarListaMonitor();
     getMonitorCount();
+    getStatusMonitorCount();
   }
 
   Future<void> carregarListaMonitor() async {
-    List<Monitor> listaMonitores = [];
     try {
       connection = databaseManager.connect();
       final MySqlConnection conn = await connection!;
-      final results = await conn.query('SELECT * FROM monitores');
+      final results =
+          await conn.query('SELECT * from dispositivos WHERE tipo = 3');
       for (var row in results) {
         final monitor = Monitor(
-          idMonitor: row['id_monitor']?.toString() ?? '',
-          idDesktop: row['id_desktop']?.toString() ?? '',
-          monitorManufacturerPrimary: row['monitor_manufacturer_primary'] ?? '',
-          monitorModelPrimary: row['monitor_model_primary'] ?? '',
-          monitorSerialNumberPrimary:
-              row['monitor_serial_number_primary'] ?? '',
-          monitorProviderPrimary: row['monitor_provider_primary'] ?? '',
-          monitorSerialProviderPrimary:
-              row['monitor_serial_provider_primary'] ?? '',
-          monitorManufacturerSecondary:
-              row['monitor_manufacturer_secondary'] ?? '',
-          monitorModelSecondary: row['monitor_model_secondary'] ?? '',
-          monitorSerialNumberSecondary:
-              row['monitor_serial_number_secondary'] ?? '',
-          monitorProviderSecondary: row['monitor_provider_secondary'] ?? '',
-          monitorSerialProviderSecondary:
-              row['monitor_serial_provider_secondary'] ?? '',
-          department: row['department'] ?? '',
+          idMonitor: row['id']?.toString() ?? '',
+          manufacturer: row['manufacturer'] ?? '',
+          modelo: row['modelo'] ?? '',
+          serialNumber: row['serialNumber'] ?? '',
+          departamento: row['departamento'] ?? '',
+          empresa: row['empresa'] ?? '',
           site: row['site'] ?? '',
+          statusDispositivo: row['status_dispositivo'] ?? '',
         );
         listaMonitores.add(monitor);
       }
-      allMonitores = listaMonitores;
       notifyListeners();
       await conn.close();
     } finally {
@@ -59,22 +50,41 @@ class MonitorManager extends ChangeNotifier {
     final MySqlConnection conn = await connection!;
     try {
       Results results = await conn.query('''
-      SELECT 
-        CASE 
-          WHEN monitor_manufacturer_primary='' OR monitor_manufacturer_primary = 'Sem Informacao' THEN 'Sem Informacao'
-          ELSE monitor_manufacturer_primary
-        END AS Marca,
-        COUNT(*) AS Quantidade
-      FROM monitores
-      GROUP BY Marca
+      SELECT manufacturer AS manufacturer, COUNT(*) AS Quantidade
+      FROM dispositivos WHERE tipo = 3
+      GROUP BY manufacturer
       ORDER BY Quantidade DESC;
     ''');
       for (var row in results) {
         chartDataMonitor.add(ChartDataMonitor(
-            fabricante: row['Marca'], quantidade: row['Quantidade']));
+            fabricante: row['manufacturer'] == 'Sem Informacao'
+                ? 'S/Info'
+                : row['manufacturer'],
+            quantidade: (row['Quantidade']) as int));
       }
       notifyListeners();
       return chartDataMonitor;
+    } finally {
+      await databaseManager.disconnect();
+    }
+  }
+
+  Future<List<ChartStatusDataMonitor>> getStatusMonitorCount() async {
+    connection = databaseManager.connect();
+    final MySqlConnection conn = await connection!;
+    try {
+      Results results = await conn.query('''
+      SELECT status_dispositivo, COUNT(*) AS Quantidade
+      FROM dispositivos WHERE tipo = 3
+      GROUP BY status_dispositivo;
+    ''');
+      for (var row in results) {
+        chartStatusDataMonitor.add(ChartStatusDataMonitor(
+            statusDispositivo: row['status_dispositivo'],
+            quantidade: row['Quantidade']));
+      }
+      notifyListeners();
+      return chartStatusDataMonitor;
     } finally {
       await databaseManager.disconnect();
     }

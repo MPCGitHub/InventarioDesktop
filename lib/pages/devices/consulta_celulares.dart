@@ -3,13 +3,13 @@ import 'package:inventarius/models/celular.dart';
 import 'package:inventarius/widgets/card_pesquisa.dart';
 import 'package:inventarius/widgets/siderbar_custom.dart';
 
-import '../../data/repository/celular_manager.dart';
+import '../../data/repository/mobile_manager.dart';
 
 // ignore: must_be_immutable
 class ConsultaCelulares extends StatelessWidget {
   List<Celular> listaCelulares = [];
 
-  CelularManager celularManager = CelularManager();
+  MobileManager mobileManager = MobileManager();
   ConsultaCelulares({super.key});
 
   @override
@@ -50,7 +50,7 @@ class ConsultaCelulares extends StatelessWidget {
                     prefixIcon: Icon(Icons.search),
                   ),
                 ),
-                CustomCard(celularManager: celularManager)
+                CustomCard(mobileManager: mobileManager)
               ],
             ),
           ),

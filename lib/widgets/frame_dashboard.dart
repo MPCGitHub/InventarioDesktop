@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:inventarius/data/repository/celular_manager.dart';
+import 'package:inventarius/data/repository/mobile_manager.dart';
 import 'package:inventarius/widgets/mobile_chart.dart';
 import 'package:provider/provider.dart';
 import '../data/repository/desktop_manager.dart';
 import '../data/repository/monitor_manager.dart';
 import '../models/dashboard_data.dart';
 import 'desktop_chart.dart';
-import 'device_data_table.dart';
 import 'monitor_chart.dart';
 
 class FrameDashboard extends StatefulWidget {
@@ -578,7 +577,7 @@ class _FrameDashboardState extends State<FrameDashboard> {
                   Expanded(
                     child: Row(
                       children: [
-                        Consumer<CelularManager>(
+                        Consumer<MobileManager>(
                           builder: (context, celularManager, _) {
                             final chartDataMobile =
                                 celularManager.chartDataMobile;
@@ -688,12 +687,12 @@ class _FrameDashboardState extends State<FrameDashboard> {
                         ),
                       ),
                     ),
-                    Expanded(
-                      child: Card(
-                        color: Colors.grey.shade700.withOpacity(0.6),
-                        child: const DeviceDataTable(),
-                      ),
-                    ),
+                    // Expanded(
+                    //   child: Card(
+                    //     color: Colors.grey.shade700.withOpacity(0.6),
+                    //     child: const DeviceDataTable(),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),

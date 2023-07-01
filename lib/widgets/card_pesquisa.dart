@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:inventarius/data/repository/celular_manager.dart';
+import 'package:inventarius/data/repository/mobile_manager.dart';
 import 'package:inventarius/widgets/checkbox.dart';
-import 'package:inventarius/widgets/tabela_itens.dart';
+import 'package:inventarius/widgets/tabela_mobile.dart';
 
 class CustomCard extends StatefulWidget {
-  final CelularManager celularManager;
+  final MobileManager mobileManager;
 
-  const CustomCard({Key? key, required this.celularManager}) : super(key: key);
+  const CustomCard({Key? key, required this.mobileManager}) : super(key: key);
 
   @override
   State<CustomCard> createState() => _CustomCardState();
@@ -160,8 +160,8 @@ class _CustomCardState extends State<CustomCard> {
               ),
             ),
           ),
-          TabelaItens(
-            celularManager: widget.celularManager,
+          TabelaMobile(
+            mobileManager: widget.mobileManager,
             showTagColumn: showTagColumn,
             showImei1Column: showImei1Column,
             showModeloColumn: showModeloColumn,

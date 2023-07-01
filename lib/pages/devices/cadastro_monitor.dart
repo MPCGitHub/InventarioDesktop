@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:inventarius/data/repository/mobile_manager.dart';
 
 import '../../models/celular.dart';
-import '../../data/repository/celular_manager.dart';
 import '../../widgets/card_pesquisa.dart';
 import '../../widgets/siderbar_custom.dart';
 
@@ -9,7 +9,7 @@ import '../../widgets/siderbar_custom.dart';
 class CadastroMonitor extends StatelessWidget {
   List<Celular> listaCelulares = [];
 
-  CelularManager celularManager = CelularManager();
+  MobileManager mobileManager = MobileManager();
 
   CadastroMonitor({super.key});
 
@@ -51,7 +51,7 @@ class CadastroMonitor extends StatelessWidget {
                     prefixIcon: Icon(Icons.search),
                   ),
                 ),
-                CustomCard(celularManager: celularManager)
+                CustomCard(mobileManager: mobileManager)
               ],
             ),
           ),

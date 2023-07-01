@@ -11,7 +11,8 @@ class Celular {
   String empresa;
   String site;
   String termo;
-  bool ativo;
+  // ignore: non_constant_identifier_names
+  String status_dispositivo;
   String data;
 
   Celular({
@@ -27,7 +28,8 @@ class Celular {
     required this.empresa,
     required this.site,
     required this.termo,
-    required this.ativo,
+    // ignore: non_constant_identifier_names
+    required this.status_dispositivo,
     required this.data,
   });
 
@@ -45,7 +47,7 @@ class Celular {
       empresa: json['empresa'],
       site: json['site'],
       termo: json['termo'],
-      ativo: json['ativo'],
+      status_dispositivo: json['status_dispositivo'],
       data: json['data'],
     );
   }
@@ -64,7 +66,7 @@ class Celular {
       'empresa': empresa,
       'site': site,
       'termo': termo,
-      'ativo': ativo,
+      'status_dispositivo': status_dispositivo,
       'data': data,
     };
   }
@@ -75,6 +77,6 @@ class Celular {
         'imei1: $imei1, imei2: $imei2, departamento: $departamento, '
         'modelo: $modelo, hd: $hd, colaborador: $colaborador, '
         'empresa: $empresa, site: $site, termo: $termo, '
-        'ativo: $ativo, data: $data}';
+        'status_dispositivo: $status_dispositivo, data: $data}';
   }
 }
