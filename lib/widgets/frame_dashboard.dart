@@ -4,7 +4,6 @@ import 'package:inventarius/widgets/mobile_chart.dart';
 import 'package:provider/provider.dart';
 import '../data/repository/desktop_manager.dart';
 import '../data/repository/monitor_manager.dart';
-import '../models/dashboard_data.dart';
 import 'desktop_chart.dart';
 import 'monitor_chart.dart';
 
@@ -355,39 +354,39 @@ class _FrameDashboardState extends State<FrameDashboard> {
                                       ],
                                     ),
                                   ),
-                                  Consumer<DashboardData>(
-                                    builder: (context, dashboardData, _) {
-                                      return Row(
-                                        children: [
-                                          const VerticalDivider(
-                                            color: Colors.white,
-                                            thickness: 1.0,
-                                            indent: 4.0,
-                                            endIndent: 4.0,
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          Text(
-                                            '202',
-                                            style: TextStyle(
-                                              color: Colors.green,
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold,
-                                              shadows: [
-                                                Shadow(
-                                                  color: Colors.lightGreen
-                                                      .withOpacity(0.1),
-                                                  offset: const Offset(1, 1),
-                                                  blurRadius: 1,
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  ),
+                                  // Consumer<DashboardData>(
+                                  //   builder: (context, dashboardData, _) {
+                                  //     return Row(
+                                  //       children: [
+                                  //         const VerticalDivider(
+                                  //           color: Colors.white,
+                                  //           thickness: 1.0,
+                                  //           indent: 4.0,
+                                  //           endIndent: 4.0,
+                                  //         ),
+                                  //         const SizedBox(
+                                  //           width: 10,
+                                  //         ),
+                                  //         Text(
+                                  //           '202',
+                                  //           style: TextStyle(
+                                  //             color: Colors.green,
+                                  //             fontSize: 20,
+                                  //             fontWeight: FontWeight.bold,
+                                  //             shadows: [
+                                  //               Shadow(
+                                  //                 color: Colors.lightGreen
+                                  //                     .withOpacity(0.1),
+                                  //                 offset: const Offset(1, 1),
+                                  //                 blurRadius: 1,
+                                  //               ),
+                                  //             ],
+                                  //           ),
+                                  //         ),
+                                  //       ],
+                                  //     );
+                                  //   },
+                                  // ),
                                 ],
                               ),
                             ),
@@ -427,40 +426,40 @@ class _FrameDashboardState extends State<FrameDashboard> {
                                       ],
                                     ),
                                   ),
-                                  Consumer<DashboardData>(
-                                    builder: (context, dashboardData, _) {
-                                      return Row(
-                                        children: [
-                                          const VerticalDivider(
-                                            color: Colors.white,
-                                            thickness: 1.0,
-                                            indent: 4.0,
-                                            endIndent: 4.0,
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          Text(
-                                            dashboardData.desktopsCount
-                                                .toString(),
-                                            style: TextStyle(
-                                              color: Colors.blue,
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold,
-                                              shadows: [
-                                                Shadow(
-                                                  color: Colors.lightGreen
-                                                      .withOpacity(0.1),
-                                                  offset: const Offset(1, 1),
-                                                  blurRadius: 1,
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  ),
+                                  // Consumer<DashboardData>(
+                                  //   builder: (context, dashboardData, _) {
+                                  //     return Row(
+                                  //       children: [
+                                  //         const VerticalDivider(
+                                  //           color: Colors.white,
+                                  //           thickness: 1.0,
+                                  //           indent: 4.0,
+                                  //           endIndent: 4.0,
+                                  //         ),
+                                  //         const SizedBox(
+                                  //           width: 10,
+                                  //         ),
+                                  //         Text(
+                                  //           dashboardData.desktopsCount
+                                  //               .toString(),
+                                  //           style: TextStyle(
+                                  //             color: Colors.blue,
+                                  //             fontSize: 20,
+                                  //             fontWeight: FontWeight.bold,
+                                  //             shadows: [
+                                  //               Shadow(
+                                  //                 color: Colors.lightGreen
+                                  //                     .withOpacity(0.1),
+                                  //                 offset: const Offset(1, 1),
+                                  //                 blurRadius: 1,
+                                  //               ),
+                                  //             ],
+                                  //           ),
+                                  //         ),
+                                  //       ],
+                                  //     );
+                                  //   },
+                                  // ),
                                 ],
                               ),
                             ),
@@ -500,40 +499,40 @@ class _FrameDashboardState extends State<FrameDashboard> {
                                       ],
                                     ),
                                   ),
-                                  Consumer<DashboardData>(
-                                    builder: (context, dashboardData, _) {
-                                      return Row(
-                                        children: [
-                                          const VerticalDivider(
-                                            color: Colors.white,
-                                            thickness: 1.0,
-                                            indent: 4.0,
-                                            endIndent: 4.0,
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          Text(
-                                            dashboardData.monitorCount
-                                                .toString(),
-                                            style: TextStyle(
-                                              color: const Color(0xFF9B58B5),
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold,
-                                              shadows: [
-                                                Shadow(
-                                                  color: Colors.lightGreen
-                                                      .withOpacity(0.1),
-                                                  offset: const Offset(1, 1),
-                                                  blurRadius: 1,
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  ),
+                                  // Consumer<DashboardData>(
+                                  //   builder: (context, dashboardData, _) {
+                                  //     return Row(
+                                  //       children: [
+                                  //         const VerticalDivider(
+                                  //           color: Colors.white,
+                                  //           thickness: 1.0,
+                                  //           indent: 4.0,
+                                  //           endIndent: 4.0,
+                                  //         ),
+                                  //         const SizedBox(
+                                  //           width: 10,
+                                  //         ),
+                                  //         Text(
+                                  //           dashboardData.monitorCount
+                                  //               .toString(),
+                                  //           style: TextStyle(
+                                  //             color: const Color(0xFF9B58B5),
+                                  //             fontSize: 20,
+                                  //             fontWeight: FontWeight.bold,
+                                  //             shadows: [
+                                  //               Shadow(
+                                  //                 color: Colors.lightGreen
+                                  //                     .withOpacity(0.1),
+                                  //                 offset: const Offset(1, 1),
+                                  //                 blurRadius: 1,
+                                  //               ),
+                                  //             ],
+                                  //           ),
+                                  //         ),
+                                  //       ],
+                                  //     );
+                                  //   },
+                                  // ),
                                 ],
                               ),
                             ),
