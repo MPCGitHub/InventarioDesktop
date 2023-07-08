@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:inventarius/pages/devices/cadastro_monitor.dart';
 import 'package:inventarius/pages/devices/consulta_celulares.dart';
 
+import '../pages/devices/desktop_cadastro.dart';
 import 'dropdown_custom.dart';
 
 class SidebarCustom extends StatefulWidget {
@@ -95,7 +96,14 @@ class _SidebarCustomState extends State<SidebarCustom> {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const DesktopCadastroPage(),
+                      ),
+                    );
+                  },
                   child: Row(
                     // ou Column, dependendo do layout desejado
                     children: [

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inventarius/models/celular.dart';
-import 'package:inventarius/models/dashboard_data.dart';
+// import 'package:inventarius/models/dashboard_data.dart';
 import 'package:inventarius/pages/dashboard/dashboard.dart';
 import 'package:provider/provider.dart';
 import 'data/repository/mobile_manager.dart';
@@ -24,10 +24,10 @@ class MyApp extends StatelessWidget {
           create: (_) => MobileManager(),
           lazy: false,
         ),
-        ChangeNotifierProvider(
-          create: (_) => DashboardData(),
-          lazy: false,
-        ),
+        // ChangeNotifierProvider(
+        //   create: (_) => DashboardData(),
+        //   lazy: false,
+        // ),
         ChangeNotifierProvider(
           create: (_) => MonitorManager(),
           lazy: false,
@@ -65,7 +65,6 @@ class MenuPrincipal extends StatefulWidget {
 class _MenuPrincipalState extends State<MenuPrincipal> {
   List<Celular> listaCelulares = [];
   MobileManager celularManager = MobileManager();
-  String searchTerm = '';
 
   @override
   Widget build(BuildContext context) {
